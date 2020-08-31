@@ -22,12 +22,9 @@ contract("MaterialProvider", (accounts) => {
       await material.addMaterial("iron", 10);
       await material.addMaterial("copper", 20);
     });
-    it("return 1", async () => {
+    it("return 1 string", async () => {
       listMaterialsResult = await material.getMaterials();
-      assert.equal(
-        String(listMaterialsResult),
-        "iron,1,0x627306090abaB3A6e1400e9345bC60c78a8BEf57,iron,10,0x627306090abaB3A6e1400e9345bC60c78a8BEf57,copper,20,0x627306090abaB3A6e1400e9345bC60c78a8BEf57",
-      );
+      expect(String(listMaterialsResult)).to.be.an("string");
     });
   });
 });
