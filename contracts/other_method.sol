@@ -50,11 +50,6 @@ contract SolutionManufacturing {
 
     }
 
-    function makeController() public returns (uint256 numControllers) {
-        Controller memory controller1 = Controller(2,3);
-        numControllers = materials["Plastic"] /= controller1.Plastic;
-        return numControllers;
-    }
 
     function makeController(uint256 numControllers) public returns (bool) {
         Controller memory controller1 = Controller(2,3);
