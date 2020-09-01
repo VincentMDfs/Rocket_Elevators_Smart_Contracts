@@ -6,7 +6,7 @@ contract MaterialProvider {
     // Material struct
     struct Material {
         string material;
-        int256 quantity;
+        uint256 quantity;
         address requester;
     }
 
@@ -15,54 +15,47 @@ contract MaterialProvider {
     Material[] public materialList;
 
     // Calculate material
-    function calculateMaterial(string memory object, int256 number)
+    function calculateMaterial(string memory object, uint256 number)
         public
         returns (bool success)
     {
         materialStruct.requester = msg.sender;
-        if (bytes(object).length == bytes("shafts").length) {
-            materialStruct.material = "Aluminum Bars";
-            materialStruct.quantity = number * 10;
-            materialList.push(materialStruct);
-            materialStruct.material = "Concrete Block";
-            materialStruct.quantity = number * 12;
-            materialList.push(materialStruct);
-        } else if (bytes(object).length == bytes("controllers").length) {
-            materialStruct.material = "Plastic";
-            materialStruct.quantity = number * 2;
-            materialList.push(materialStruct);
-            materialStruct.material = "Copper";
-            materialStruct.quantity = number * 3;
-            materialList.push(materialStruct);
-        } else if (bytes(object).length == bytes("doors").length) {
-            materialStruct.material = "Stainless Sheet";
-            materialStruct.quantity = number * 4;
-            materialList.push(materialStruct);
-            materialStruct.material = "Stainless Frame";
-            materialStruct.quantity = number * 1;
-            materialList.push(materialStruct);
-        } else if (bytes(object).length == bytes("buttons").length) {
-            materialStruct.material = "Spring";
-            materialStruct.quantity = number * 1;
-            materialList.push(materialStruct);
-            materialStruct.material = "Glass";
-            materialStruct.quantity = number * 1;
-            materialList.push(materialStruct);
-        } else if (bytes(object).length == bytes("motors").length) {
-            materialStruct.material = "Engine";
-            materialStruct.quantity = number * 1;
-            materialList.push(materialStruct);
-            materialStruct.material = "Cable";
-            materialStruct.quantity = number * 1;
-            materialList.push(materialStruct);
+        if (compareStrings(object, "shafts")) {
+            pushMaterialInsideArray("Aluminum Bars", (number*10));
+            pushMaterialInsideArray("Concrete Block", (number*12));
+        } else if (compareStrings(object, "controllers")) {
+            pushMaterialInsideArray("Plastic", (number*2));
+            pushMaterialInsideArray("Copper", (number*3));
+        } else if (compareStrings(object, "doors")) {
+            pushMaterialInsideArray("Stainless Sheet", (number*4));
+            pushMaterialInsideArray("Stainless Frame", (number*1));
+        } else if (compareStrings(object, "buttons")) {
+            pushMaterialInsideArray("String", (number*1));
+            pushMaterialInsideArray("Glass", (number*1));
+        } else if (compareStrings(object, "motors")) {
+            pushMaterialInsideArray("Engine", (number*1));
+            pushMaterialInsideArray("Cable", (number*1));
         } else {
             return false;
         }
         return true;
     }
 
+    //compare string
+    function compareStrings(string memory a, string memory b) private 
+       returns (bool) {
+  return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))) );
+       }
+
+    // push the material inside the array of materials
+    function pushMaterialInsideArray(string memory material, uint256 quantity) private {
+        materialStruct.material = material;
+        materialStruct.quantity = quantity;
+        materialList.push(materialStruct);
+    }
+
     // Add material to the list of materials
-    function addMaterial(string memory material, int256 quantity)
+    function addMaterial(string memory material, uint256 quantity)
         public
         returns (bool success)
     {
@@ -73,35 +66,22 @@ contract MaterialProvider {
         return true;
     }
 
-    // Change the quantity of a material (only the requester)
-    function changeQuatity(uint256 position, int256 newQuatity)
+    // Change owner of the transaction
+    function changeRequester(uint256 position, address newRequester)
         public
         returns (bool success)
     {
         require(
             msg.sender == materialList[position].requester,
-            "Only the requester can change the quantity"
+            "Only the requester can change the requester"
         );
-        materialList[position].quantity = newQuatity;
+        require(
+            msg.sender == newRequester,
+            "You cannot change the requester to yourself"
+        );
+        materialList[position].requester = newRequester;
         return true;
     }
-
-    // // Change owner of the transaction
-    // function changeRequester(uint256 position, address newRequester)
-    //     public
-    //     returns (bool success)
-    // {
-    //     require(
-    //         msg.sender == materialList[position].requester,
-    //         "Only the requester can change the requester"
-    //     );
-    //     require(
-    //         msg.sender == newRequester,
-    //         "You cannot change the requester to yourself"
-    //     );
-    //     materialList[position].requester = newRequester;
-    //     return true;
-    // }
 
     // Return the current list of materials
     function getMaterial(uint256 position)
@@ -109,7 +89,7 @@ contract MaterialProvider {
         view
         returns (
             string memory material,
-            int256 quantity,
+            uint256 quantity,
             address requester
         )
     {
@@ -132,6 +112,19 @@ contract MaterialProvider {
 
         materialList[position].material = newMaterial;
 
+        return true;
+    }
+
+    // Change the quantity of a material (only the requester)
+    function changeQuantity(uint256 position, uint256 newQuantity)
+        public
+        returns (bool success)
+    {
+        require(
+            msg.sender == materialList[position].requester,
+            "Only the requester can change the quantity"
+        );
+        materialList[position].quantity = newQuantity;
         return true;
     }
 

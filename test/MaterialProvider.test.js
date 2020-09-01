@@ -1,3 +1,6 @@
+const { equal } = require("assert");
+const { assert } = require("console");
+
 const MaterialProvider = artifacts.require("MaterialProvider");
 
 contract("MaterialProvider", (accounts) => {
@@ -7,24 +10,25 @@ contract("MaterialProvider", (accounts) => {
     material = await MaterialProvider.deployed();
   });
 
-  describe("add material to list and test if it's the same", async () => {
-    before("add material to the list", async () => {
-      await material.addMaterial("iron", 1);
+  describe("check adding multiple request", async () => {
+    before("add multiple materials to the list", async () => {
+      
+      await material.calculateMaterial("shafts", 8)
+      await material.calculateMaterial("controllers", 1)
+      await material.calculateMaterial("doors", 40)
+      await material.calculateMaterial("buttons", 96)
+      await material.calculateMaterial("motors", 8)
+
     });
-    it("return 1", async () => {
-      materialResult = await material.getMaterial(0);
-      assert.equal(String(materialResult.quantity), "1");
+    it("return string", async () => {
+      listMaterialsResult = await material.getMaterials();
+      expect(String(listMaterialsResult)).to.be.an("string");
+
+    });
+
+    it("return 80 for quantity", async () => {
+      expect(listMaterialsResult[0].quantity).to.be.eq("80")
     });
   });
 
-  describe("check list of materials", async () => {
-    before("add multiple materials to the list", async () => {
-      await material.addMaterial("iron", 10);
-      await material.addMaterial("copper", 20);
-    });
-    it("return 1 string", async () => {
-      listMaterialsResult = await material.getMaterials();
-      expect(String(listMaterialsResult)).to.be.an("string");
-    });
-  });
 });
