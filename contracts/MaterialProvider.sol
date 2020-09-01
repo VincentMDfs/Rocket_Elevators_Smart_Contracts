@@ -21,20 +21,20 @@ contract MaterialProvider {
     {
         materialStruct.requester = msg.sender;
         if (compareStrings(object, "shafts")) {
-            pushMaterialInsideArray("Aluminum Bars", (number*10));
-            pushMaterialInsideArray("Concrete Block", (number*12));
+            pushMaterialInsideArray("Aluminum Bars", (number * 10));
+            pushMaterialInsideArray("Concrete Block", (number * 12));
         } else if (compareStrings(object, "controllers")) {
-            pushMaterialInsideArray("Plastic", (number*2));
-            pushMaterialInsideArray("Copper", (number*3));
+            pushMaterialInsideArray("Plastic", (number * 2));
+            pushMaterialInsideArray("Copper", (number * 3));
         } else if (compareStrings(object, "doors")) {
-            pushMaterialInsideArray("Stainless Sheet", (number*4));
-            pushMaterialInsideArray("Stainless Frame", (number*1));
+            pushMaterialInsideArray("Stainless Sheet", (number * 4));
+            pushMaterialInsideArray("Stainless Frame", (number * 1));
         } else if (compareStrings(object, "buttons")) {
-            pushMaterialInsideArray("String", (number*1));
-            pushMaterialInsideArray("Glass", (number*1));
+            pushMaterialInsideArray("String", (number * 1));
+            pushMaterialInsideArray("Glass", (number * 1));
         } else if (compareStrings(object, "motors")) {
-            pushMaterialInsideArray("Engine", (number*1));
-            pushMaterialInsideArray("Cable", (number*1));
+            pushMaterialInsideArray("Engine", (number * 1));
+            pushMaterialInsideArray("Cable", (number * 1));
         } else {
             return false;
         }
@@ -42,13 +42,19 @@ contract MaterialProvider {
     }
 
     //compare string
-    function compareStrings(string memory a, string memory b) private 
-       returns (bool) {
-  return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))) );
-       }
+    function compareStrings(string memory a, string memory b)
+        private
+        pure
+        returns (bool)
+    {
+        return (keccak256(abi.encodePacked((a))) ==
+            keccak256(abi.encodePacked((b))));
+    }
 
     // push the material inside the array of materials
-    function pushMaterialInsideArray(string memory material, uint256 quantity) private {
+    function pushMaterialInsideArray(string memory material, uint256 quantity)
+        private
+    {
         materialStruct.material = material;
         materialStruct.quantity = quantity;
         materialList.push(materialStruct);
@@ -76,7 +82,7 @@ contract MaterialProvider {
             "Only the requester can change the requester"
         );
         require(
-            msg.sender == newRequester,
+            msg.sender != newRequester,
             "You cannot change the requester to yourself"
         );
         materialList[position].requester = newRequester;
@@ -109,9 +115,7 @@ contract MaterialProvider {
             msg.sender == materialList[position].requester,
             "Only the requester can change the material type"
         );
-
         materialList[position].material = newMaterial;
-
         return true;
     }
 
