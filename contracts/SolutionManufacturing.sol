@@ -2,6 +2,8 @@
 pragma solidity >=0.4.22 <0.8.0;
 pragma experimental ABIEncoderV2;
 
+import './MaterialProvider.sol';
+
 contract SolutionManufacturing {
 
     mapping (string => uint256) public materials;
@@ -42,19 +44,21 @@ contract SolutionManufacturing {
     }
     Product productStruct;
     Product[] productList;
+    uint private index = 0;
+    
 
     constructor() public {
 
-        materials["Plastic"] = 2;
-        materials["Copper"] = 3;
-        materials["AluminumBars"] = 80;
-        materials["ConcreteBlock"] = 96;
-        materials["StainlessSheet"] = 32;
-        materials["StainlessFrame"] = 8;
-        materials["Spring"] = 96;
-        materials["Glass"] = 96;
-        materials["Engine"] = 8;
-        materials["Cable"] = 8;
+        materials["Plastic"] = 0;
+        materials["Copper"] = 0;
+        materials["AluminumBars"] = 0;
+        materials["ConcreteBlock"] = 0;
+        materials["StainlessSheet"] = 0;
+        materials["StainlessFrame"] = 0;
+        materials["Spring"] = 0;
+        materials["Glass"] = 0;
+        materials["Engine"] = 0;
+        materials["Cable"] = 0;
 
     }
 
@@ -70,7 +74,7 @@ contract SolutionManufacturing {
         // Motors		Engine		1 per elev		8
         // Motors		Cable		1 per elevator		8
 
-    function makeController() public returns (uint256 numControllers) {
+    function makeController() private returns (uint256 numControllers) {
         Controller memory controller1 = Controller(2,3);
         numControllers = materials["Plastic"] /= controller1.Plastic;
         productStruct.Name = "Controller";
@@ -79,7 +83,7 @@ contract SolutionManufacturing {
         return numControllers;
     }
 
-    function makeShaft() public returns (uint256 numShafts) {
+    function makeShaft() private returns (uint256 numShafts) {
         Shaft memory shaft1 = Shaft(10,12);
         numShafts = materials["AluminumBars"] /= shaft1.AluminumBars;
         productStruct.Name = "Shafts";
@@ -88,7 +92,7 @@ contract SolutionManufacturing {
         return numShafts;
     }
 
-    function makeDoor() public returns (uint256 numDoors) {
+    function makeDoor() private returns (uint256 numDoors) {
         Door memory door1 = Door(4,1);
         numDoors = materials["StainlessSheet"] /= door1.StainlessSheet;
         productStruct.Name = "Doors";
@@ -97,7 +101,7 @@ contract SolutionManufacturing {
         return numDoors;
     }
 
-    function makeButton() public returns (uint256 numButtons) {
+    function makeButton() private returns (uint256 numButtons) {
         Button memory button1 = Button(1,1);
         numButtons = materials["Glass"] /= button1.Glass;
         productStruct.Name = "Buttons";
@@ -106,7 +110,7 @@ contract SolutionManufacturing {
         return numButtons;
     }
 
-    function makeMotor() public returns (uint256 numMotors) {
+    function makeMotor() private returns (uint256 numMotors) {
         Motor memory motor1 = Motor(1,1);
         numMotors = materials["Engine"] /= motor1.Engine;
         productStruct.Name = "Motors";
@@ -114,13 +118,18 @@ contract SolutionManufacturing {
         productList.push(productStruct);
         return numMotors;
     }
-    
-    function getOrder() public {
+
+    function getOrder(address a) public {
+        MaterialProvider.Material[] memory m = MaterialProvider(a).getMaterials();
+        for(index; index<m.length;index++){
+                materials[m[index].material] = m[index].quantity;
+        }
         makeController();
         makeShaft();
         makeDoor();
         makeButton();
         makeMotor();
+
     }
 
     function viewOrder() public view returns (Product[] memory) {

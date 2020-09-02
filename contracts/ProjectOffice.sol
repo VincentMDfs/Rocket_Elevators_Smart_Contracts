@@ -17,7 +17,7 @@ contract ProjectOffice {
         uint Buttons;
         uint Motors;
     }
-
+    
     // addComponents by requester with input from the Order
     function addComponents(
         uint Batteries, uint Columns, uint Elevators, uint Floors

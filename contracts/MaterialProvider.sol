@@ -22,12 +22,12 @@ contract MaterialProvider {
     {
         ProjectOffice.Components[] memory components = ProjectOffice(a).getComponents();
         for(index;index<components.length;index++) {
-            pushMaterialInsideArray("Aluminum Bars", (components[index].Shafts * 10));
-            pushMaterialInsideArray("Concrete Block", (components[index].Shafts * 12));
+            pushMaterialInsideArray("AluminumBars", (components[index].Shafts * 10));
+            pushMaterialInsideArray("ConcreteBlock", (components[index].Shafts * 12));
             pushMaterialInsideArray("Plastic", (components[index].Controllers * 2));
             pushMaterialInsideArray("Copper", (components[index].Controllers * 3));
-            pushMaterialInsideArray("Stainless Sheet", (components[index].Doors * 4));
-            pushMaterialInsideArray("Stainless Frame", (components[index].Doors * 1));
+            pushMaterialInsideArray("StainlessSheet", (components[index].Doors * 4));
+            pushMaterialInsideArray("StainlessFrame", (components[index].Doors * 1));
             pushMaterialInsideArray("Spring", (components[index].Buttons * 1));
             pushMaterialInsideArray("Glass", (components[index].Buttons * 1));
             pushMaterialInsideArray("Engine", (components[index].Motors * 1));
