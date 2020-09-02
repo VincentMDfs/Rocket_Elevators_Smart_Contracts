@@ -6,7 +6,7 @@ import './MaterialProvider.sol';
 
 contract SolutionManufacturing {
 
-    mapping (string => uint256) public materials;
+    mapping (string => uint256) private materials;
     
     struct Product {
         string Name;

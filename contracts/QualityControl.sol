@@ -37,7 +37,7 @@ contract QualityControl {
         return p;
     }
 
-    function addToList(address a) public{
+    function VerificationStamp(address a) public{
         v.certificate = generatePermit();
         v.perm = generatePermit();
         SolutionManufacturing.Product[] memory products = SolutionManufacturing(a).viewOrder();

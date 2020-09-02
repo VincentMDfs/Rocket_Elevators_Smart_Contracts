@@ -39,7 +39,7 @@ contract ProjectOffice {
         c.Doors = Elevators * Floors;
         c.Buttons = (Elevators * 8) + (Columns * 16);
         c.Motors = Elevators;
-
+        
         // Get the order details by orderNumber call
         components.push(c);
     }
