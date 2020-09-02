@@ -3,20 +3,24 @@ const { assert } = require("console");
 
 const MaterialProvider = artifacts.require("MaterialProvider");
 
+const ProjectOffice = artifacts.require("ProjectOffice");
+
 contract("MaterialProvider", (accounts) => {
   let material;
   let materialResult;
+  let product;
   before(async () => {
+    product = await ProjectOffice.deployed();
     material = await MaterialProvider.deployed();
   });
+  
 
   describe("check adding multiple request", async () => {
     before("add multiple materials to the list", async () => {
-      await material.calculateMaterial("shafts", 8);
-      await material.calculateMaterial("controllers", 1);
-      await material.calculateMaterial("doors", 40);
-      await material.calculateMaterial("buttons", 96);
-      await material.calculateMaterial("motors", 8);
+      result = await product.addComponents(1,2,8,5)
+
+
+      await material.calculateMaterial(result.receipt.to);
     });
     it("return string", async () => {
       listMaterialsResult = await material.getMaterials();
