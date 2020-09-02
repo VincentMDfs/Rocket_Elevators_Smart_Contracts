@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.8.0;
 pragma experimental ABIEncoderV2;
 
@@ -28,11 +29,11 @@ contract QualityControl {
     uint index = 0;
 
 
-    function generatePermit() public returns(Permit memory certificate){
+    function generatePermit() private view returns(Permit memory certificate){
         Permit memory p;
-        p.identifier = now/2;
-        p.startdate = now;
-        p.enddate = now + 5* 365 days;
+        p.identifier = block.timestamp/2;
+        p.startdate = block.timestamp;
+        p.enddate = block.timestamp + 5* 365 days;
         return p;
     }
 
