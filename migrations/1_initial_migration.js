@@ -4,6 +4,8 @@ const ProjectOffice = artifacts.require("ProjectOffice");
 const Shipping = artifacts.require("Shipping");
 const QualityControl = artifacts.require("QualityControl");
 const SolutionManufacturing = artifacts.require("SolutionManufacturing");
+const Installation = artifacts.require("Installation");
+
 
 
 
@@ -15,4 +17,6 @@ module.exports = function (deployer) {
   deployer.deploy(QualityControl);
   deployer.deploy(SolutionManufacturing);
   deployer.deploy(Shipping);
+  deployer.deploy(Installation);
+
 };

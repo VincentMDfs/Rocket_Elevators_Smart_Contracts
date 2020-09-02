@@ -26,19 +26,17 @@ contract("QualityControl", (accounts) => {
       result = await solution.getOrder(r1.receipt.to)
 
 
-      await quality.addToList(result.receipt.to);
+      await quality.VerificationStamp(result.receipt.to);
     });
     it("return string", async () => {
       q = await quality.getVerification();
       expect(String(q)).to.be.an("string");
       
     });
-    it("return string", async () => {
+    it("return true", async () => {
       console.log(q.mList[0].verified != true);
       expect(q.mList[0].verified).to.equal(true);
       
     });
-
-
   });
 });
