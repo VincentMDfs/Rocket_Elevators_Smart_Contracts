@@ -1,6 +1,6 @@
 # Rocket_Elevators_Smart_Contracts
 ## CodeBoxx Week - 12
-The project was to create a smart contract consisting of 6 nodes using Solidity and Truffle as well as a front end component for which we used Vue. The de facto leader of the team was ***Vincent Mercier***, the front-end was done by ***Frédéric Choquette*** with from ***Samuel Chabot & Alexandre Levesque*** and the nodes were worked on by all team members.
+The project was to create a smart contract consisting of 6 nodes using Solidity and Truffle as well as a front end component for which we used Vue. The de facto leader of the team was ***Vincent Mercier***, the front-end was done by ***Frédéric Choquette*** with help from ***Samuel Chabot & Alexandre Levesque*** and the nodes were worked on by all team members.
 
 ## The Team
 - Vincent Mercier
