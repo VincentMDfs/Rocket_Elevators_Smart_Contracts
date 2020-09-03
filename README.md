@@ -28,7 +28,7 @@ Sorts the array of materials into maps for each resource and creates the individ
 4. **Quality, Security and Homologation** - ***Alexandre Levesque & Vincent Mercier*** \
 Receives the list of components and marks each one with a certificate of verification which includes a timestamp and id number for each component in the order. The components array is then sent to the Shipping node.
 
-5. **Shipping** - ***Samuel Chabot*** \
+5. **Shipping** - ***Samuel Chabot, Frédéric Choquette & Alexandre Levesque*** \
 The Shipping node recieves the verified parts list from the previous node and marks each component recieved, packaged and then shipped.
 
 6. **Installation and Activation** - ***The Whole Team*** \
