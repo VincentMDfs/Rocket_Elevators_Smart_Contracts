@@ -6,40 +6,40 @@ import './MaterialProvider.sol';
 
 contract SolutionManufacturing {
 
-    mapping (string => uint256) private materials;
+    mapping (string => uint64) private materials;
     
     struct Product {
         string Name;
-        uint256 Quantity;
+        uint64 Quantity;
     }
 
      struct Controller {
-        uint256 Plastic;
-        uint256 Copper;
+        uint64 Plastic;
+        uint64 Copper;
         
     }
 
     struct Shaft {
-        uint256 AluminumBars;
-        uint256 ConcreteBlock;
+        uint64 AluminumBars;
+        uint64 ConcreteBlock;
 
     }
     
     struct Door {
-        uint256 StainlessSheet;
-        uint256 StainlessFrame;
+        uint64 StainlessSheet;
+        uint64 StainlessFrame;
         
     }
 
     struct Button {
-        uint256 Spring;
-        uint256 Glass;
+        uint64 Spring;
+        uint64 Glass;
         
     }
 
     struct Motor {
-        uint256 Engine;
-        uint256 Cable;
+        uint64 Engine;
+        uint64 Cable;
         
     }
     Product productStruct;
@@ -74,48 +74,73 @@ contract SolutionManufacturing {
         // Motors		Engine		1 per elev		8
         // Motors		Cable		1 per elevator		8
 
-    function makeController() private returns (uint256 numControllers) {
+    function makeController() private returns (uint64 numControllers) {
+        if(materials["Plastic"] == 0){
+            return 0;
+        }
         Controller memory controller1 = Controller(2,3);
         numControllers = materials["Plastic"] /= controller1.Plastic;
         productStruct.Name = "Controller";
         productStruct.Quantity = numControllers;
         productList.push(productStruct);
+        materials["Plastic"] = 0;
+        materials["copper"] = 0;
         return numControllers;
     }
 
-    function makeShaft() private returns (uint256 numShafts) {
+    function makeShaft() private returns (uint64 numShafts) {
+        if(materials["AluminumBars"] == 0){
+            return 0;
+        }
         Shaft memory shaft1 = Shaft(10,12);
         numShafts = materials["AluminumBars"] /= shaft1.AluminumBars;
         productStruct.Name = "Shafts";
         productStruct.Quantity = numShafts;
         productList.push(productStruct);
+        materials["AluminumBars"] = 0;
+        materials["ConcreteBlock"] = 0;
         return numShafts;
     }
 
-    function makeDoor() private returns (uint256 numDoors) {
+    function makeDoor() private returns (uint64 numDoors) {
+        if(materials["StainlessSheet"] == 0){
+            return 0;
+        }
         Door memory door1 = Door(4,1);
         numDoors = materials["StainlessSheet"] /= door1.StainlessSheet;
         productStruct.Name = "Doors";
         productStruct.Quantity = numDoors;
         productList.push(productStruct);
+        materials["StainlessSheet"] = 0;
+        materials["StainlessFrame"] = 0;
         return numDoors;
     }
 
-    function makeButton() private returns (uint256 numButtons) {
+    function makeButton() private returns (uint64 numButtons) {
+        if(materials["Glass"] == 0){
+            return 0;
+        }
         Button memory button1 = Button(1,1);
         numButtons = materials["Glass"] /= button1.Glass;
         productStruct.Name = "Buttons";
         productStruct.Quantity = numButtons;
         productList.push(productStruct);
+        materials["Glass"] = 0;
+        materials["Spring"] = 0;
         return numButtons;
     }
 
-    function makeMotor() private returns (uint256 numMotors) {
+    function makeMotor() private returns (uint64 numMotors) {
+        if(materials["Engine"] == 0){
+            return 0;
+        }
         Motor memory motor1 = Motor(1,1);
         numMotors = materials["Engine"] /= motor1.Engine;
         productStruct.Name = "Motors";
         productStruct.Quantity = numMotors;
         productList.push(productStruct);
+        materials["Engine"] = 0;
+        materials["Cable"] = 0;
         return numMotors;
     }
 

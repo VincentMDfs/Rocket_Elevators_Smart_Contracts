@@ -5,11 +5,11 @@ pragma experimental ABIEncoderV2;
 import "./ProjectOffice.sol";
 
 contract MaterialProvider {
-    uint private index = 0;
+    uint64 private index = 0;
     // Material struct
     struct Material {
         string material;
-        uint256 quantity;
+        uint64 quantity;
     }//address of creator
    
     // List of materials
@@ -36,7 +36,7 @@ contract MaterialProvider {
     }
 
     // push the material inside the array of materials
-    function pushMaterialInsideArray(string memory material, uint256 quantity)
+    function pushMaterialInsideArray(string memory material, uint64 quantity)
         private
     {
         materialStruct.material = material;

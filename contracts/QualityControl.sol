@@ -7,7 +7,7 @@ import './SolutionManufacturing.sol';
 contract QualityControl {
 
     struct Permit{
-        uint identifier;
+        uint256 identifier;
         uint256 startdate;
         uint256 enddate;
         //uint datetime // 1512220800
@@ -15,7 +15,7 @@ contract QualityControl {
 
     struct Product{
         string name;
-        uint quantity;
+        uint64 quantity;
         bool verified;
     }
 
@@ -26,7 +26,7 @@ contract QualityControl {
     }
     //Product[] mList;
     Verification v;
-    uint index = 0;
+    uint64 index = 0;
 
 
     function generatePermit() private view returns(Permit memory certificate){

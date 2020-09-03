@@ -11,16 +11,16 @@ contract ProjectOffice {
     }
 
     struct Components {
-        uint Controllers;
-        uint Shafts;
-        uint Doors;
-        uint Buttons;
-        uint Motors;
+        uint64 Controllers;
+        uint64 Shafts;
+        uint64 Doors;
+        uint64 Buttons;
+        uint64 Motors;
     }
     
     // addComponents by requester with input from the Order
     function addComponents(
-        uint Batteries, uint Columns, uint Elevators, uint Floors
+        uint64 Batteries, uint64 Columns, uint64 Elevators, uint64 Floors
             )
     public 
     // Extrapolation by cacul
