@@ -4,18 +4,17 @@ pragma experimental ABIEncoderV2;
 import "./QualityControl.sol";
 
 contract Shipping {
-	uint private indexReceivedOrder;
-	uint private indexPacked;
-	uint private indexShipped;
-	uint private indexReceived;
+	uint64 private indexReceivedOrder;
+	uint64 private indexPacked;
+	uint64 private indexShipped;
+	uint64 private indexReceived;
     Product[] private productList;
     Product product;
 
 
 	struct Product {
 		string name;
-        uint quantity;
-        bool verified;
+        uint64 quantity;
 		bool packaged;
 		bool shipped;
 		bool received;
@@ -28,7 +27,6 @@ contract Shipping {
 			if(inputProduct[indexReceivedOrder].verified) {
 				product.name = inputProduct[indexReceivedOrder].name;
 				product.quantity = inputProduct[indexReceivedOrder].quantity;
-				product.verified = inputProduct[indexReceivedOrder].verified;
 				productList.push(product);
 			}
 		}

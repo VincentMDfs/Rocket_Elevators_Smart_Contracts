@@ -111,6 +111,7 @@ export default {
       this.projectForm.columns = "";
       this.projectForm.elevators = "";
       this.projectForm.floors = "";
+some      this.getProjectData();
     },
   },
 };

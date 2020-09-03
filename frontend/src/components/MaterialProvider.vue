@@ -1,5 +1,5 @@
 <template>
-  <b-card v-if="isDrizzleInitialized" header="Request material to provider">
+  <b-card v-if="isDrizzleInitialized" header="Request material to provide">
     <b-card-text>
       <b-button @click.prevent="sendMaterialCalculation" variant="success"
         >Send material to the calculation</b-button

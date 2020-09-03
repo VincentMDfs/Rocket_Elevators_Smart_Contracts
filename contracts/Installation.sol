@@ -6,8 +6,8 @@ import "./Shipping.sol";
 
 //this was made with the heart of everyone :D
 contract Installation {
-	uint private index;
-	uint private index1;
+	uint64 private index;
+	uint64 private index1;
 
 	FinishedProduct private finishedProduct;
 	FinishedProduct[] private finishedProductList;
@@ -18,7 +18,7 @@ contract Installation {
 		string installationType;
 		bool active;
 		string name;
-		uint quantity;
+		uint64 quantity;
 	}
 
 	//install all the product
@@ -28,8 +28,8 @@ contract Installation {
 		if(compareStrings(TypeOfInstalation, "excelium") || compareStrings(TypeOfInstalation, "premium") || compareStrings(TypeOfInstalation, "standard")) {
 			finishedProduct.installationType = TypeOfInstalation;
 		}
-		uint numButtons;
-		uint numElevator;
+		uint64 numButtons;
+		uint64 numElevator;
 		finishedProduct.installed = true;
 		finishedProduct.addressOfTech = msg.sender;
 		for(index;index<inputProduct.length;index++) {
@@ -68,7 +68,7 @@ contract Installation {
 	function _toLower(string memory str) internal pure returns (string memory) {
         bytes memory bStr = bytes(str);
         bytes memory bLower = new bytes(bStr.length);
-        for (uint i = 0; i < bStr.length; i++) {
+        for (uint64 i = 0; i < bStr.length; i++) {
             // Uppercase character...
             if ((uint8(bStr[i]) >= 65) && (uint8(bStr[i]) <= 90)) {
                 // So we add 32 to make it lowercase
