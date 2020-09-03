@@ -1,11 +1,11 @@
 <template>
   <div v-if="isDrizzleInitialized">
-    <project-data />
-    <material-data class="mt-2" />
-    <solution-data class="mt-2" />
-    <quality-data class="mt-2" />
-    <shipping-data class="mt-2" />
-    <installation-data class="mt-2" />
+    <project-data  />
+    <material-data class="mt-5" />
+    <solution-data class="mt-5"  />
+    <quality-data class="mt-5"  />
+    <shipping-data class="mt-5"  />
+    <installation-data class="mt-5 "/>
 
 
 

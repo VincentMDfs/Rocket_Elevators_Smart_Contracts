@@ -27,7 +27,7 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button @click.prevent="sendProjectData" variant="primary"
+        <b-button @click.prevent="sendProjectData" variant="success"
           >Submit</b-button
         >
       </b-form>
@@ -84,7 +84,7 @@ export default {
         toAscii: false,
       });
       let projectArray = [];
-      if (ProjectData === "loading") return false;
+      if (ProjectData === "loading") return;
       ProjectData.forEach((project) => {
         projectArray.push({
           controllers: project[0],
@@ -111,7 +111,6 @@ export default {
       this.projectForm.columns = "";
       this.projectForm.elevators = "";
       this.projectForm.floors = "";
-some      this.getProjectData();
     },
   },
 };

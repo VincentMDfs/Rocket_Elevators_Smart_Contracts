@@ -11,9 +11,9 @@
           ></b-form-select>
         </b-form-group>
       </b-form>
-        <b-button @click.prevent="sendInstall" variant="success"
+        <b-button style="margin: 0 10px;" @click.prevent="sendInstall" variant="success"
         >Install</b-button>
-      <b-button @click.prevent="sendActivate" variant="success"
+      <b-button style="margin: 0 10px;" @click.prevent="sendActivate" variant="success"
         >Activate</b-button
       >
     </b-card-text>
