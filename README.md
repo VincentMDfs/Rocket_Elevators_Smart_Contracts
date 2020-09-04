@@ -37,3 +37,6 @@ The final node takes the list of parts that were shipped and assembles them into
 ## Running the application
 To see the program in action, clone the repository, enter root folder and run the command \
 ``sh start.sh``
+
+In your favorite browser, navigate to localhost:8080 \
+Note that you will need to install Meta-Mask, ganache, truffle and of course npm
