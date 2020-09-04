@@ -35,8 +35,16 @@ The Shipping node recieves the verified parts list from the previous node and ma
 The final node takes the list of parts that were shipped and assembles them into the elevator system that was ordered in the first node. It then marks the system as activated and returns a list of functional Batteries, Columns, Elevators and Floors.
 
 ## Running the application
-To see the program in action, clone the repository, enter root folder and run the command \
+- Note that you will need to install Meta-Mask, ganache, truffle and of course npm \
+- First start your ganache application and choose quick start ethereum \
+- Then, clone the repository, enter root folder and run the command \
 ``sh start.sh``
+- In your favorite browser, navigate to localhost:8080 \
+- You should now see your ganache first account drop in the 99 ethereum \
+- Now in your metamask (tested in chrome and firefox) click on the plugin icon \
+- Then click on your account icon in the top right of the pop-up \
+- Click on the LOCK button also in the top right corner \
+- A little further down, there is a link saying "<b>import using account seedphrase</b>" \
+- Copy and paste your mnemonic right above the first account in ganache UI \
+- The link should have been made now, you can refresh the page and start testing!
 
-In your favorite browser, navigate to localhost:8080 \
-Note that you will need to install Meta-Mask, ganache, truffle and of course npm
