@@ -1,5 +1,5 @@
 <template>
-  <b-card v-if="isDrizzleInitialized" header="Put the stamp for the verification">
+  <b-card v-if="isDrizzleInitialized" header="">
     <b-card-text>
       <b-button @click.prevent="sendQualityControl" variant="success"
         >Verification stamp</b-button

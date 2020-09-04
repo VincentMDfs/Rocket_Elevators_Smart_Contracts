@@ -1,9 +1,9 @@
 <template>
-  <b-card v-if="isDrizzleInitialized" header="Install the finished product with the type">
+  <b-card v-if="isDrizzleInitialized" header="">
     <b-card-text>
 
       <b-form>
-        <b-form-group label="Type:">
+        <b-form-group label="Type of the installation:">
           <b-form-select
             v-model="installForm.type"
             :options="selectType"

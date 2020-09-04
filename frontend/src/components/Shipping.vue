@@ -1,8 +1,8 @@
 <template>
-  <b-card v-if="isDrizzleInitialized" header="Put the stamp for the verification">
+  <b-card v-if="isDrizzleInitialized" header="">
     <b-card-text>
       <b-button @click.prevent="sendReceivedOrder" variant="success"
-        >Received Order</b-button
+        >Receive Order</b-button
       >
     </b-card-text>
     <template v-slot:footer>
@@ -21,12 +21,12 @@
         ]"
       ></b-table>
       <b-button style="margin: 0 10px;"  @click.prevent="sendPackaged" variant="success"
-        >Packaged</b-button
+        >Pack the order</b-button
       >
       <b-button style="margin: 0 10px;"  @click.prevent="sendShipped" variant="success"
-        >Shipped</b-button
+        >Ship the order</b-button
       ><b-button style="margin: 0 10px;"  @click.prevent="sendReceived" variant="success"
-        >Received</b-button
+        >Order delivered</b-button
       >
     </template>
   </b-card>

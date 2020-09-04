@@ -1,8 +1,8 @@
 <template>
-  <b-card v-if="isDrizzleInitialized" header="Request material to provide">
+  <b-card v-if="isDrizzleInitialized" header="">
     <b-card-text>
       <b-button @click.prevent="sendMaterialCalculation" variant="success"
-        >Send material to the calculation</b-button
+        >Create the raw materials</b-button
       >
     </b-card-text>
     <template v-slot:footer>

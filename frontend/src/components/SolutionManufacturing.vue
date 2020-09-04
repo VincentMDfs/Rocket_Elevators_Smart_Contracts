@@ -1,8 +1,8 @@
 <template>
-    <b-card v-if="isDrizzleInitialized" header="Build the solution">
+    <b-card v-if="isDrizzleInitialized" header="">
         <b-card-text>
         <b-button @click.prevent="sendOrder" variant="success"
-            >Build the solution</b-button
+            >Manufacture the products</b-button
         >
         </b-card-text>
         <template v-slot:footer>
